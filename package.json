@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Whatsapp API",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Whatsapp",
+    "API",
+    "NodeJS"
+  ],
+  "author": "Alfi",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.17.0"
+  }
+}
