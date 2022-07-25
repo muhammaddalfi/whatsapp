@@ -4,7 +4,7 @@ const qrcode = require('qrcode-terminal')
 const { phoneNumberFormatter } = require('../helpers/formatter');
 const { Client,LocalAuth } = require('whatsapp-web.js');
 
-const SESSION_FILE_PATH = './session.json';
+const SESSION_FILE_PATH = './session';
 const client = new Client({
     authStrategy: new LocalAuth({
         dataPath:SESSION_FILE_PATH
