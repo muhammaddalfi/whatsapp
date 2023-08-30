@@ -2,17 +2,16 @@ const express = require('express')
 const router = express.Router()
 const qrcode = require('qrcode-terminal')
 const { phoneNumberFormatter } = require('../helpers/formatter');
-const { Client,LocalAuth } = require('whatsapp-web.js');
+const { Client, LocalAuth } = require('whatsapp-web.js');
 
 const SESSION_FILE_PATH = './session';
 const client = new Client({
     authStrategy: new LocalAuth({
-        dataPath:SESSION_FILE_PATH
+        dataPath: SESSION_FILE_PATH
     }),
     puppeteer: { headless: true }
 });
 
-client.initialize();
 
 //config Whatsapp API
 client.on('qr', (qr) => {
@@ -47,7 +46,7 @@ router.route('/send')
         const number = phoneNumberFormatter(req.body.number); //this input post CI
         const message = req.body.message;
 
-       // res.send(number)
+        // res.send(number)
         client.sendMessage(number, message).then(response => {
             res.status(200).json({
                 status: true,
@@ -62,12 +61,13 @@ router.route('/send')
 
     })
 
-    client.on('change_state', state => {
-        console.log('CHANGE STATE', state );
-    });
-    
-    client.on('disconnected', (reason) => {
-        console.log('Client was logged out', reason);
-    });
+client.on('change_state', state => {
+    console.log('CHANGE STATE', state);
+});
 
+client.on('disconnected', (reason) => {
+    console.log('Client was logged out', reason);
+});
+
+client.initialize();
 module.exports = router
